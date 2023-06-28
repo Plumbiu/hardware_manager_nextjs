@@ -16,8 +16,6 @@ export default function User() {
     fetchData()
   }, [])
   const { data: session } = useSession()
-  console.log(session)
-
   const [id, setId] = useState('')
   const [role, setRole] = useState(session?.role)
   const [open, setOpen] = useState(false)
