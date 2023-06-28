@@ -10,11 +10,7 @@ export default function Layout(props: any) {
         <Empty
           image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
           imageStyle={{ height: 200 }}
-          description={
-            <Space size={4}>
-              登录时没有账号会自动注册
-            </Space>
-          }
+          description={<Space size={4}>登录时没有账号会自动注册</Space>}
         >
           <Button type="primary" onClick={() => signIn()}>
             立即登录

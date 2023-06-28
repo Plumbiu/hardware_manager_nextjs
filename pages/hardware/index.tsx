@@ -39,11 +39,20 @@ export default function Hardware() {
         <meta name="description" content="通过表格查看实验室的硬件信息" />
       </Head>
       <Space size="middle" className="mb-3">
-        <Input onChange={e => setWords(e.target.value.toLowerCase())} allowClear addonBefore="器件名" placeholder="请输入器件名" />
-        <Select className="w-40" onChange={val => setType(val.toLowerCase())} placeholder="选择器件类型" options={options}></Select>
+        <Input
+          onChange={e => setWords(e.target.value.toLowerCase())}
+          allowClear
+          addonBefore="器件名"
+          placeholder="请输入器件名"
+        />
+        <Select
+          className="w-40"
+          onChange={val => setType(val.toLowerCase())}
+          placeholder="选择器件类型"
+          options={options}
+        ></Select>
       </Space>
       <Table loading={!data} rowKey="id" dataSource={data} columns={columns} />
     </div>
   )
 }
-

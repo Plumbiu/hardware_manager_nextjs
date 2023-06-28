@@ -10,7 +10,7 @@ datasource db {
 model User {
   id            String    @id @default(cuid()) @map("_id")
   name          String
-  email         String   @unique
+  email         String    @unique
   emailVerified DateTime?
   image         String?
   role          Int       @default(2)
@@ -19,7 +19,7 @@ model User {
 }
 
 model Hardware {
-  id        String      @id @default(cuid()) @map("_id")
+  id        String   @id @default(cuid()) @map("_id")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   box_num   String
@@ -30,11 +30,11 @@ model Hardware {
 }
 
 model Comment {
-  id      String  @id @default(cuid()) @map("_id")
-  userId  String
-  user    User    @relation(fields: [userId], references: [id])
-  text    String
-  like    Int     @default(0)
-  disLike Int     @default(0)
+  id       String  @id @default(cuid()) @map("_id")
+  userId   String
+  user     User    @relation(fields: [userId], references: [id])
+  text     String
+  like     Int     @default(0)
+  disLike  Int     @default(0)
   finished Boolean @default(false)
 }

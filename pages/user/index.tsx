@@ -21,6 +21,7 @@ export default function User() {
   const [role, setRole] = useState(session?.role)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [confirmLoading, setConfirmLoading] = useState(false)
+  console.log(session)
 
   async function handleOk() {
     try {

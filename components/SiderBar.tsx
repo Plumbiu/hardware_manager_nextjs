@@ -4,13 +4,7 @@ import router from 'next/router'
 import type { MenuProps } from 'antd'
 import React, { useMemo } from 'react'
 type MenuItem = Required<MenuProps>['items'][number]
-import {
-  PlusCircleOutlined,
-  MessageOutlined,
-  DesktopOutlined,
-  UserOutlined,
-  MenuOutlined,
-} from '@ant-design/icons'
+import { PlusCircleOutlined, MessageOutlined, DesktopOutlined, UserOutlined, MenuOutlined } from '@ant-design/icons'
 
 function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[]): MenuItem {
   return {
@@ -25,9 +19,7 @@ const items: MenuItem[] = [
   getItem('用户管理', 'user', <UserOutlined />),
   getItem('评论系统', 'comment', <MessageOutlined />),
   getItem('硬件表格', 'hardware', <DesktopOutlined />),
-  getItem('未来功能', 'future', <MenuOutlined />, [
-    getItem('批量导入', 'import', <PlusCircleOutlined />),
-  ]),
+  getItem('未来功能', 'future', <MenuOutlined />, [getItem('批量导入', 'import', <PlusCircleOutlined />)]),
 ]
 
 export function SiderBar() {

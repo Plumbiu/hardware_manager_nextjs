@@ -1,5 +1,5 @@
 import NextAuth, { NextAuthOptions } from 'next-auth'
-import { NextApiHandler } from "next";
+import { NextApiHandler } from 'next'
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 import CredentialsProvider from 'next-auth/providers/credentials'
@@ -12,13 +12,16 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        name: { label: 'NAME', type: '用户名', placeholder: '用户名' },
+        invitedCode: { label: 'INVITEDCODE', type: 'text', placeholder: '邀请码' },
+        name: { label: 'NAME', type: 'text', placeholder: '用户名' },
         email: { label: 'EMAIL', type: 'text', placeholder: '邮箱' },
         password: { label: 'PASSWORD', type: 'password' },
       },
       async authorize(credentials) {
         try {
-          if (!credentials || !credentials.email || !credentials.name || !credentials.password.trim()) throw new Error('获取失败')
+          if (credentials?.invitedCode !== 'plumbiu') throw new Error('邀请码错误')
+          if (!credentials || !credentials.email || !credentials.name || !credentials.password.trim())
+            throw new Error('获取失败')
           const user = await prisma.user.findFirst({
             where: {
               email: credentials.email,
@@ -79,7 +82,7 @@ export const authOptions: NextAuthOptions = {
       }
       return token
     },
-    session: async ({ session, token, user }) => {
+    session: async ({ session, token }) => {
       try {
         if (session?.user && token) {
           session.user.id = token.id as string
