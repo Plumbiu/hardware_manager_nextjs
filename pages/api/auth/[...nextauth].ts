@@ -66,7 +66,7 @@ export const authOptions: NextAuthOptions = {
   ],
   // debug: true,
   jwt: {
-    secret: 'plumbiu',
+    secret: process.env.JWT_SECRET,
   },
   session: {
     strategy: 'jwt',
