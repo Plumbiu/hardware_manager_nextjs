@@ -1,6 +1,6 @@
 import { IUserData } from '../../types'
 import { rolesArr, tagColorArr } from '../../composables/userRole'
-import { Button, Table, Tag, Modal, Select, Empty } from 'antd'
+import { Button, Table, Tag, Modal, Select, Empty, notification } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { encrypt } from '../../utils/useCrypt'
@@ -20,6 +20,8 @@ export default function User() {
   const [role, setRole] = useState(session?.role)
   const [open, setOpen] = useState(false)
   const [confirmLoading, setConfirmLoading] = useState(false)
+  const [api, contextHolder] = notification.useNotification()
+
   async function handleOk() {
     try {
       await fetch('/api/user/', {
@@ -46,7 +48,7 @@ export default function User() {
 
   return (
     <>
-      <Table rowKey="id" dataSource={data}>
+      <Table loading={!data} rowKey="id" dataSource={data}>
         <Table.Column title="名称" dataIndex="name" key="name" />
         <Table.Column title="邮箱" dataIndex="email" key="email" />
         <Table.Column

@@ -52,6 +52,7 @@ export default function Comment() {
         </Button>
       </Button.Group>
       <List
+        loading={!data}
         bordered
         itemLayout="vertical"
         dataSource={data}

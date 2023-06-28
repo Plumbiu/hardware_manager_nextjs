@@ -128,7 +128,7 @@ export default function Hardware() {
         <Input onChange={filterByWords} allowClear addonBefore="器件名" placeholder="请输入器件名" />
         <Select className="w-40" onChange={filterByType} placeholder="选择器件类型" options={options}></Select>
       </Space>
-      <Table rowKey="id" dataSource={data} columns={columns} />
+      <Table loading={!data} rowKey="id" dataSource={data} columns={columns} />
     </div>
   )
 }
