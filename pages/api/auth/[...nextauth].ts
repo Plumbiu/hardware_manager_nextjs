@@ -19,7 +19,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          if (credentials?.invitedCode !== 'plumbiu') throw new Error('邀请码错误')
+          if (credentials?.invitedCode !== process.env.INVITED_CODE) throw new Error('邀请码错误')
           if (!credentials || !credentials.email || !credentials.name || !credentials.password.trim())
             throw new Error('获取失败')
           const user = await prisma.user.findFirst({
