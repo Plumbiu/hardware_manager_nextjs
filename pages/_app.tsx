@@ -21,6 +21,8 @@ const routeMap: IRouteMap = {
   hardware: '硬件表格',
   future: '未来功能',
 }
+const MemoSiderBar = React.memo(SiderBar)
+const MemoHeaderBar = React.memo(HeaderBar)
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const {
@@ -28,8 +30,6 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   } = theme.useToken()
   const router = useRouter()
   const pathname = routeMap[router.pathname.replace('/', '')]
-  const MemoSiderBar = React.memo(SiderBar)
-  const MemoHeaderBar = React.memo(HeaderBar)
   return (
     <SessionProvider session={session}>
       <GithubSvg />
