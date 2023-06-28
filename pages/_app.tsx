@@ -28,14 +28,16 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   } = theme.useToken()
   const router = useRouter()
   const pathname = routeMap[router.pathname.replace('/', '')]
+  const MemoSiderBar = React.memo(SiderBar)
+  const MemoHeaderBar = React.memo(HeaderBar)
   return (
     <SessionProvider session={session}>
       <GithubSvg />
       <Layout colorBgContaine={colorBgContainer}>
         <AntdLayout style={{ minHeight: '100vh' }}>
-          <SiderBar />
+          <MemoSiderBar />
           <AntdLayout>
-            <HeaderBar colorBgContainer={colorBgContainer} />
+            <MemoHeaderBar colorBgContainer={colorBgContainer} />
             <Content style={{ margin: '0 16px' }}>
               <Breadcrumb style={{ margin: '16px 0' }} items={[{ title: '硬件管理系统' }, { title: pathname }]} />
               <div style={{ overflow: 'auto', padding: 12, minHeight: 360, background: colorBgContainer }}>

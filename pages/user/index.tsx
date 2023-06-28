@@ -19,7 +19,7 @@ export default function User() {
   const { data: session } = useSession()
   const [id, setId] = useState('')
   const [role, setRole] = useState(session?.role)
-  const [open, setOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [confirmLoading, setConfirmLoading] = useState(false)
 
   async function handleOk() {
@@ -37,7 +37,7 @@ export default function User() {
       })
     } catch (err) {
     } finally {
-      setOpen(false)
+      setIsModalOpen(false)
       setConfirmLoading(false)
     }
   }
@@ -68,7 +68,7 @@ export default function User() {
           render={(id: string) => (
             <Button
               onClick={() => {
-                setOpen(true)
+                setIsModalOpen(true)
                 setId(id)
               }}
             >
@@ -79,10 +79,10 @@ export default function User() {
       </Table>
       <Modal
         title={`修改权限`}
-        open={open}
+        open={isModalOpen}
         onOk={handleOk}
         confirmLoading={confirmLoading}
-        onCancel={() => setOpen(false)}
+        onCancel={() => setIsModalOpen(false)}
         okText="确认"
         cancelText="取消"
       >

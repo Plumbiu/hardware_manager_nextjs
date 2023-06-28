@@ -19,12 +19,12 @@ export default function Comment() {
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(`/api/comment`)
-      const { data: t } = await res.json()
-      setData(t)
+      const { data: tresult } = await res.json()
+      setData(tresult)
     }
     fetchData()
   }, [])
-  const [open, setOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [text, setText] = useState('')
   const { data: session } = useSession()
   async function handleOk() {
@@ -42,7 +42,7 @@ export default function Comment() {
       })
     } catch (err) {
     } finally {
-      setOpen(false)
+      setIsModalOpen(false)
     }
   }
   return (
@@ -52,7 +52,7 @@ export default function Comment() {
         <meta name="description" content="这里是评论区，可以发表有哪些硬件的位置等信息出错" />
       </Head>
       <Button.Group className="mb-3">
-        <Button onClick={() => setOpen(true)} type="primary">
+        <Button onClick={() => setIsModalOpen(true)} type="primary">
           添加评论
         </Button>
       </Button.Group>
@@ -91,9 +91,9 @@ export default function Comment() {
       />
       <Modal
         title={`添加评论`}
-        open={open}
+        open={isModalOpen}
         onOk={handleOk}
-        onCancel={() => setOpen(false)}
+        onCancel={() => setIsModalOpen(false)}
         okText="确认"
         cancelText="取消"
       >

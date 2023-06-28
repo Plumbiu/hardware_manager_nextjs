@@ -2,7 +2,7 @@ import { Menu, Layout } from 'antd'
 const { Sider } = Layout
 import router from 'next/router'
 import type { MenuProps } from 'antd'
-import React from 'react'
+import React, { useMemo } from 'react'
 type MenuItem = Required<MenuProps>['items'][number]
 import {
   PlusCircleOutlined,
@@ -11,6 +11,7 @@ import {
   UserOutlined,
   MenuOutlined,
 } from '@ant-design/icons'
+
 function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[]): MenuItem {
   return {
     key,
@@ -28,7 +29,8 @@ const items: MenuItem[] = [
     getItem('批量导入', 'import', <PlusCircleOutlined />),
   ]),
 ]
-export const SiderBar = () => {
+
+export function SiderBar() {
   return (
     <Sider breakpoint="xl">
       <div className="m-4 p-3 bg-white/10 rounded-xl text-white/80 font-bold text-sm text-center">硬件管理系统</div>
