@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { ICommentData } from '../../types'
 import { useSession } from 'next-auth/react'
 import { encrypt } from '../../utils/useCrypt'
+import Head from 'next/head'
 
 const IconText = ({ icon, text }: { icon: any; text: string }) => (
   <Space className="cursor-pointer hover:text-blue-500 transition-colors">
@@ -46,6 +47,10 @@ export default function Comment() {
   }
   return (
     <>
+      <Head>
+        <title>评论系统</title>
+        <meta name="description" content="这里是评论区，可以发表有哪些硬件的位置等信息出错" />
+      </Head>
       <Button.Group className="mb-3">
         <Button onClick={() => setOpen(true)} type="primary">
           添加评论
@@ -65,7 +70,7 @@ export default function Comment() {
               <IconText icon={<LikeOutlined />} text={item.finished ? 'x' : '√'} key="list-vertical-like-o" />,
             ]}
             extra={
-              <Button disabled={item.user.role === 2} type="primary">
+              <Button disabled={session?.role === 2} type="primary">
                 标记完成
               </Button>
             }

@@ -4,6 +4,7 @@ import { Input, Select, Space, Table } from 'antd'
 import React, { useEffect, useState } from 'react'
 import options from '@/assets/hardware/options.json'
 import columns from '@/assets/hardware/columns.json'
+import Head from 'next/head'
 
 export default function Hardware() {
   const [data, setData] = useState<IHardwareData[]>()
@@ -33,6 +34,10 @@ export default function Hardware() {
 
   return (
     <div>
+      <Head>
+        <title>硬件表格</title>
+        <meta name="description" content="通过表格查看实验室的硬件信息" />
+      </Head>
       <Space size="middle" className="mb-3">
         <Input onChange={e => setWords(e.target.value.toLowerCase())} allowClear addonBefore="器件名" placeholder="请输入器件名" />
         <Select className="w-40" onChange={val => setType(val.toLowerCase())} placeholder="选择器件类型" options={options}></Select>

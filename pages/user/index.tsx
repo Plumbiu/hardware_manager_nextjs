@@ -4,6 +4,7 @@ import { Button, Table, Tag, Modal, Select, Empty } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { encrypt } from '../../utils/useCrypt'
+import Head from 'next/head'
 
 export default function User() {
   const [data, setData] = useState<IUserData[]>()
@@ -47,6 +48,10 @@ export default function User() {
 
   return (
     <>
+      <Head>
+        <title>用户管理</title>
+        <meta name="description" content="用于管理用户的权限" />
+      </Head>
       <Table loading={!data} rowKey="id" dataSource={data}>
         <Table.Column title="名称" dataIndex="name" key="name" />
         <Table.Column title="邮箱" dataIndex="email" key="email" />

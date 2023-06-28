@@ -8,7 +8,7 @@ const menuList: MenuProps['items'] = [
   {
     key: '1',
     label: (
-      <a target="_blank" rel="noopener noreferrer" onClick={e => e.preventDefault()}>
+      <a target="_blank" rel="noopener noreferrer">
         孵化器官网(暂无)
       </a>
     ),
@@ -17,7 +17,7 @@ const menuList: MenuProps['items'] = [
   {
     key: '2',
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+      <a target="_blank" rel="noopener noreferrer" href="https://hardware.plumbiu.club">
         硬件管理系统
       </a>
     ),
@@ -25,7 +25,7 @@ const menuList: MenuProps['items'] = [
   {
     key: '3',
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://github.com/FHQ-LAB/hardware_manager">
+      <a target="_blank" rel="noopener noreferrer" href="https://github.com/Plumbiu/hardware_manager_nextjs">
         参与本项目开发
       </a>
     ),
@@ -48,14 +48,14 @@ export default function HeaderBar(props: any) {
           )}
         </Col>
         <Col>
-          <a onClick={e => e.preventDefault()}>
-            <Dropdown menu={{ items: menuList }}>
+          <Dropdown menu={{ items: menuList }}>
+            <a onClick={e => e.preventDefault()}>
               <Space>
                 参加更多
                 <DownOutlined />
               </Space>
-            </Dropdown>
-          </a>
+            </a>
+          </Dropdown>
         </Col>
       </Row>
     </Header>

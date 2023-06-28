@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function GithubSvg() {
   return (
-    <a href="https://github.com/FHQ-LAB/hardware_manager" className="github-corner" aria-label="View source on GitHub">
+    <a href="https://github.com/Plumbiu/hardware_manager_nextjs" target='_blank' className="github-corner" aria-label="View source on GitHub">
       <svg
         width="80"
         height="80"
