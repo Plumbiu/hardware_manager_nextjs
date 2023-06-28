@@ -49,5 +49,3 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
     </SessionProvider>
   )
 }
-
-export async function getStaticProps() {}

@@ -1,0 +1,22 @@
+[
+  {
+    "title": "位置",
+    "dataIndex": "box_num"
+  },
+  {
+    "title": "器件名",
+    "dataIndex": "name"
+  },
+  {
+    "title": "类型",
+    "dataIndex": "type"
+  },
+  {
+    "title": "位置(行)",
+    "dataIndex": "row"
+  },
+  {
+    "title": "位置(列)",
+    "dataIndex": "col"
+  }
+]

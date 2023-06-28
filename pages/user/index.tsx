@@ -1,6 +1,6 @@
 import { IUserData } from '../../types'
 import { rolesArr, tagColorArr } from '../../composables/userRole'
-import { Button, Table, Tag, Modal, Select, Empty, notification } from 'antd'
+import { Button, Table, Tag, Modal, Select, Empty } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { encrypt } from '../../utils/useCrypt'
@@ -20,7 +20,6 @@ export default function User() {
   const [role, setRole] = useState(session?.role)
   const [open, setOpen] = useState(false)
   const [confirmLoading, setConfirmLoading] = useState(false)
-  const [api, contextHolder] = notification.useNotification()
 
   async function handleOk() {
     try {
