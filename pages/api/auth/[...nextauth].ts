@@ -12,7 +12,7 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        name: { label: 'NAME', type: '用户名' },
+        name: { label: 'NAME', type: '用户名', placeholder: '用户名' },
         email: { label: 'EMAIL', type: 'text', placeholder: '邮箱' },
         password: { label: 'PASSWORD', type: 'password' },
       },
