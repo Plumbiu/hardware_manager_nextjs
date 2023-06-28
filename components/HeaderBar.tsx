@@ -1,7 +1,7 @@
 import { Avatar, Layout, Row, Col, Dropdown, MenuProps, Space } from 'antd'
 import { useSession } from 'next-auth/react'
 import React from 'react'
-import { UserOutlined, FrownOutlined, GithubOutlined, DownOutlined } from '@ant-design/icons'
+import { UserOutlined, FrownOutlined, DownOutlined } from '@ant-design/icons'
 const { Header } = Layout
 
 const menuList: MenuProps['items'] = [
