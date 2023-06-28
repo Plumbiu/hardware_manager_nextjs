@@ -3,7 +3,7 @@ import { NextApiHandler } from "next";
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { encrypt } from '../../../utils/useCrypt'
+import { encrypt } from '../../utils/useCrypt'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 
 export const authOptions: NextAuthOptions = {

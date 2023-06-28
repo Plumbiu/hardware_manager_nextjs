@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
-import { decrypt } from '../../utils/useCrypt'
+import { decrypt } from '../utils/useCrypt'
 
 const prisma = new PrismaClient()
 
