@@ -18,7 +18,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          if (!credentials) throw new Error('获取失败')
+          if (!credentials || !credentials.email || !credentials.name || !credentials.password.trim()) throw new Error('获取失败')
           const user = await prisma.user.findFirst({
             where: {
               email: credentials.email,
