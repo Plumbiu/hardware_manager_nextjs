@@ -13,8 +13,6 @@ export default function User(props: { data: IUserData[] }) {
   const [role, setRole] = useState(session?.role)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [confirmLoading, setConfirmLoading] = useState(false)
-  console.log(session)
-
   async function handleOk() {
     try {
       await fetch('/api/user/', {
@@ -34,11 +32,9 @@ export default function User(props: { data: IUserData[] }) {
       setConfirmLoading(false)
     }
   }
-
   if (!session || session?.role === 2) {
     return <Empty description={<span className="text-black/50">普通成员无权限查看，请联系管理员</span>} />
   }
-
   return (
     <>
       <Head>
