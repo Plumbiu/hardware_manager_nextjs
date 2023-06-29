@@ -6,23 +6,12 @@ import options from '@/assets/hardware/options.json'
 import columns from '@/assets/hardware/columns.json'
 import Head from 'next/head'
 
-export default function Hardware() {
-  const [data, setData] = useState<IHardwareData[]>()
-  const [clonedData, setClonedData] = useState<IHardwareData[]>()
-  async function fetchData() {
-    const res = await fetch(`/api/hardware`)
-    const { data: t } = await res.json()
-    setData(t)
-    setClonedData(t)
-  }
-  useEffect(() => {
-    fetchData()
-  }, [])
+export default function Hardware(props: { data: IHardwareData[] }) {
+  const [data, setData] = useState(props.data)
   const [type, setType] = useState('')
   const [words, setWords] = useState('')
   useEffect(() => {
-    if (!data || !clonedData) return
-    const filteredData = clonedData?.filter((item: IHardwareData) => {
+    const filteredData = props.data.filter((item: IHardwareData) => {
       const _name = item.name.toLowerCase()
       const _type = item.type.toLowerCase()
       if (!type) return _name.includes(words)
@@ -52,7 +41,17 @@ export default function Hardware() {
           options={options}
         ></Select>
       </Space>
-      <Table loading={!data} rowKey="id" dataSource={data} columns={columns} />
+      <Table rowKey="id" dataSource={data} columns={columns} />
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`http://localhost:3000/api/hardware`)
+  const { data} = await res.json()
+  return {
+    props: {
+      data
+    }
+  }
 }

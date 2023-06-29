@@ -6,16 +6,8 @@ import { useSession } from 'next-auth/react'
 import { encrypt } from '../../utils/useCrypt'
 import Head from 'next/head'
 
-export default function User() {
-  const [data, setData] = useState<IUserData[]>()
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(`/api/user`)
-      const { data: t } = await res.json()
-      setData(t)
-    }
-    fetchData()
-  }, [])
+export default function User(props: { data: IUserData[] }) {
+  const [data, setData] = useState(props.data)
   const { data: session } = useSession()
   const [id, setId] = useState('')
   const [role, setRole] = useState(session?.role)
@@ -53,7 +45,7 @@ export default function User() {
         <title>用户管理</title>
         <meta name="description" content="用于管理用户的权限" />
       </Head>
-      <Table loading={!data} rowKey="id" dataSource={data}>
+      <Table rowKey="id" dataSource={data}>
         <Table.Column title="名称" dataIndex="name" key="name" />
         <Table.Column title="邮箱" dataIndex="email" key="email" />
         <Table.Column
@@ -100,4 +92,14 @@ export default function User() {
       </Modal>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`/api/user`)
+  const { data } = await res.json()
+  return {
+    props: {
+      data
+    }
+  }
 }

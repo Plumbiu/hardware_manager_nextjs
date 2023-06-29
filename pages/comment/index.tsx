@@ -14,16 +14,8 @@ const IconText = ({ icon, text }: { icon: any; text: string }) => (
   </Space>
 )
 
-export default function Comment() {
-  const [data, setData] = useState<ICommentData[]>()
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(`/api/comment`)
-      const { data: tresult } = await res.json()
-      setData(tresult)
-    }
-    fetchData()
-  }, [])
+export default function Comment(props: { data: ICommentData[] }) {
+  const [data, setData] = useState(props.data)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [text, setText] = useState('')
   const { data: session } = useSession()
@@ -57,7 +49,6 @@ export default function Comment() {
         </Button>
       </Button.Group>
       <List
-        loading={!data}
         bordered
         itemLayout="vertical"
         dataSource={data}
@@ -101,4 +92,14 @@ export default function Comment() {
       </Modal>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`/api/comment`)
+  const { data } = await res.json()
+  return {
+    props: {
+      data
+    }
+  }
 }

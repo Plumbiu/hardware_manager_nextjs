@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Layout as AntdLayout, theme, Breadcrumb } from 'antd'
 import { useRouter } from 'next/router'
 import { SiderBar } from '../components/SiderBar'
@@ -9,6 +9,7 @@ import HeaderBar from '../components/HeaderBar'
 import FooterBtn from '../components/FooterBtn'
 import Layout from '../components/Layout'
 import GithubSvg from '../components/GithubSvg'
+import Loading from '@/components/Loading'
 
 const { Content } = AntdLayout
 
@@ -38,12 +39,14 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
           <MemoSiderBar />
           <AntdLayout>
             <MemoHeaderBar colorBgContainer={colorBgContainer} />
-            <Content style={{ margin: '0 16px' }}>
-              <Breadcrumb style={{ margin: '16px 0' }} items={[{ title: '硬件管理系统' }, { title: pathname }]} />
-              <div style={{ overflow: 'auto', padding: 12, minHeight: 360, background: colorBgContainer }}>
-                <Component {...pageProps} />
-              </div>
-            </Content>
+            <Suspense fallback={<Loading />}>
+              <Content style={{ margin: '0 16px' }}>
+                <Breadcrumb style={{ margin: '16px 0' }} items={[{ title: '硬件管理系统' }, { title: pathname }]} />
+                <div style={{ overflow: 'auto', padding: 12, minHeight: 360, background: colorBgContainer }}>
+                  <Component {...pageProps} />
+                </div>
+              </Content>
+            </Suspense>
           </AntdLayout>
         </AntdLayout>
         <FooterBtn />
