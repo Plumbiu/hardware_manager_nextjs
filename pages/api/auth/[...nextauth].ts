@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
               password: encrypt(credentials.password),
             },
           })
-          if (user == null) {
+          if (!user) {
             if (credentials?.invitedCode !== process.env.INVITED_CODE) throw new Error('邀请码错误')
             const newUser = await prisma.user.create({
               data: {
@@ -41,6 +41,8 @@ export const authOptions: NextAuthOptions = {
           }
           return user
         } catch (error: any) {
+          console.log(error.message);
+          
           return null
         }
       },
