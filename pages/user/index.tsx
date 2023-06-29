@@ -90,7 +90,7 @@ export default function User(props: { data: IUserData[] }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(`https://hardware.plumbiu.club/api/user`)
   const { data } = await res.json()
   return {

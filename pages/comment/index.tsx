@@ -80,8 +80,9 @@ export default function Comment(props: { data: ICommentData[] }) {
           </List.Item>
         )}
       />
+
       <Modal
-        title={`添加评论`}
+        title="添加评论"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={() => setIsModalOpen(false)}
@@ -94,12 +95,12 @@ export default function Comment(props: { data: ICommentData[] }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(`https://hardware.plumbiu.club/api/comment`)
   const { data } = await res.json()
   return {
     props: {
-      data
-    }
+      data,
+    },
   }
 }
