@@ -1,7 +1,7 @@
 import { IUserData } from '../../types'
 import { rolesArr, tagColorArr } from '../../composables/userRole'
 import { Button, Table, Tag, Modal, Select, Empty } from 'antd'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { encrypt } from '../../utils/useCrypt'
 import Head from 'next/head'
@@ -94,8 +94,8 @@ export default function User(props: { data: IUserData[] }) {
   )
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(`/api/user`)
+export async function getStaticProps() {
+  const res = await fetch(`https://hardware.plumbiu.club/api/user`)
   const { data } = await res.json()
   return {
     props: {

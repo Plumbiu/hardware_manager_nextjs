@@ -46,8 +46,8 @@ export default function Hardware(props: { data: IHardwareData[] }) {
   )
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:3000/api/hardware`)
+export async function getStaticProps() {
+  const res = await fetch(`https://hardware.plumbiu.club/api/hardware`)
   const { data} = await res.json()
   return {
     props: {

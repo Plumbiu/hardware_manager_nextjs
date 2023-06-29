@@ -1,7 +1,7 @@
 import { Avatar, Button, Input, List, Modal, Space, Tag } from 'antd'
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons'
 import { rolesArr, tagColorArr } from '../../composables/userRole'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { ICommentData } from '../../types'
 import { useSession } from 'next-auth/react'
 import { encrypt } from '../../utils/useCrypt'
@@ -94,8 +94,8 @@ export default function Comment(props: { data: ICommentData[] }) {
   )
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(`/api/comment`)
+export async function getStaticProps() {
+  const res = await fetch(`https://hardware.plumbiu.club/api/comment`)
   const { data } = await res.json()
   return {
     props: {
