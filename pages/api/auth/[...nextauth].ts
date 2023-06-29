@@ -12,16 +12,15 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        invitedCode: { label: 'INVITEDCODE', type: 'text', placeholder: '邀请码' },
+        invitedCode: { label: 'INVITEDCODE', type: 'text', placeholder: '邀请码(已注册可不用填写)' },
         name: { label: 'NAME', type: 'text', placeholder: '用户名' },
         email: { label: 'EMAIL', type: 'text', placeholder: '邮箱' },
         password: { label: 'PASSWORD', type: 'password' },
       },
       async authorize(credentials) {
         try {
-          if (credentials?.invitedCode !== process.env.INVITED_CODE) throw new Error('邀请码错误')
           if (!credentials || !credentials.email || !credentials.name || !credentials.password.trim())
-            throw new Error('获取失败')
+            throw new Error('获取失败，请填写有效信息')
           const user = await prisma.user.findFirst({
             where: {
               email: credentials.email,
@@ -30,6 +29,7 @@ export const authOptions: NextAuthOptions = {
             },
           })
           if (user == null) {
+            if (credentials?.invitedCode !== process.env.INVITED_CODE) throw new Error('邀请码错误')
             const newUser = await prisma.user.create({
               data: {
                 email: credentials.email,
