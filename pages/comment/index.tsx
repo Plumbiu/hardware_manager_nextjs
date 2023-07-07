@@ -8,7 +8,7 @@ import { encrypt } from '../../utils/useCrypt'
 import Head from 'next/head'
 
 const IconText = ({ icon, text }: { icon: any; text: string }) => (
-  <Space className="cursor-pointer hover:text-blue-500 transition-colors">
+  <Space size={3} className="cursor-pointer hover:text-blue-500 transition-colors">
     {icon}
     {text}
   </Space>
@@ -60,7 +60,7 @@ export default function Comment(props: { data: ICommentData[] }) {
               <IconText icon={<LikeOutlined />} text={item.finished ? 'x' : '√'} key="list-vertical-like-o" />,
             ]}
             extra={
-              <Button disabled={session?.role === 2} type="primary">
+              <Button className='corner:block hidden' disabled={session?.role === 2} type="primary">
                 标记完成
               </Button>
             }
