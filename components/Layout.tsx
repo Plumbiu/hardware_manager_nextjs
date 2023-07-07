@@ -1,13 +1,8 @@
 import { useSession, signIn } from 'next-auth/react'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Layout as AntdLayout, Breadcrumb } from 'antd'
-import { SiderBar } from './SiderBar'
-import HeaderBar from './HeaderBar'
-import FooterBtn from './FooterBtn'
 import { useRouter } from 'next/router'
-
-const MemoSiderBar = React.memo(SiderBar)
-const MemoHeaderBar = React.memo(HeaderBar)
+import Loading from '@/components/Loading'
 interface IRouteMap {
   [key: string]: string
 }
@@ -27,19 +22,12 @@ export default function Layout(props: any) {
     () => signIn()
   } else {
     return (
-      <>
-        <AntdLayout style={{ minHeight: '100vh' }}>
-          <MemoSiderBar />
-          <AntdLayout>
-            <MemoHeaderBar />
-            <Content style={{ margin: '0 16px' }}>
-              <Breadcrumb style={{ margin: '16px 0' }} items={[{ title: '硬件管理系统' }, { title: pathname }]} />
-              <div style={{ overflow: 'auto', padding: 12, minHeight: 360, background: '#fff' }}>{props.children}</div>
-            </Content>
-          </AntdLayout>
-        </AntdLayout>
-        <FooterBtn />
-      </>
+      <Suspense fallback={<Loading />}>
+        <Content style={{ margin: '0 16px' }}>
+          <Breadcrumb style={{ margin: '16px 0' }} items={[{ title: '硬件管理系统' }, { title: pathname }]} />
+          <div style={{ overflow: 'auto', padding: 12, minHeight: 360, background: '#fff' }}>{props.children}</div>
+        </Content>
+      </Suspense>
     )
   }
 }
