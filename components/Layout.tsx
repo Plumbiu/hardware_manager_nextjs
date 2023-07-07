@@ -15,7 +15,7 @@ const routeMap: IRouteMap = {
 const { Content } = AntdLayout
 
 export default function Layout(props: any) {
-  const { data: session } = useSession({})
+  const { data: session } = useSession()
   const router = useRouter()
   const pathname = routeMap[router.pathname.replace('/', '')]
   if (!session) {
