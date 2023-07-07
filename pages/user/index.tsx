@@ -26,7 +26,6 @@ export default function User(props: { data: IUserData[] }) {
           secret: encrypt(process.env.NEXT_PUBLIC_API_SECRET!),
         }),
       })
-    } catch (err) {
     } finally {
       setIsModalOpen(false)
       setConfirmLoading(false)

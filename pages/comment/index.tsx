@@ -32,7 +32,6 @@ export default function Comment(props: { data: ICommentData[] }) {
           secret: encrypt(process.env.NEXT_PUBLIC_API_SECRET!),
         }),
       })
-    } catch (err) {
     } finally {
       setIsModalOpen(false)
     }

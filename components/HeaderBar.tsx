@@ -32,10 +32,10 @@ const menuList: MenuProps['items'] = [
   },
 ]
 
-export default function HeaderBar(props: any) {
+export default function HeaderBar() {
   const { data: session } = useSession()
   return (
-    <Header className="pl-3 corner:pr-20 pr-3" style={{ background: props.colorBgContainer }}>
+    <Header className="pl-3 corner:pr-20 pr-3" style={{ background: '#fff' }}>
       <Row justify="space-between">
         <Col>
           {session ? (

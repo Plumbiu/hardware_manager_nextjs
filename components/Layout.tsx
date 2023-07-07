@@ -1,7 +1,7 @@
 import { useSession, signIn } from 'next-auth/react'
 import { Empty, Button, Space } from 'antd'
 import React from 'react'
-import { Layout as AntdLayout, theme, Breadcrumb } from 'antd'
+import { Layout as AntdLayout, Breadcrumb } from 'antd'
 import { SiderBar } from './SiderBar'
 import HeaderBar from './HeaderBar'
 import FooterBtn from './FooterBtn'
@@ -22,9 +22,6 @@ const { Content } = AntdLayout
 
 export default function Layout(props: any) {
   const { data: session } = useSession()
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken()
   const router = useRouter()
   const pathname = routeMap[router.pathname.replace('/', '')]
   if (!session) {
@@ -47,10 +44,10 @@ export default function Layout(props: any) {
       <AntdLayout style={{ minHeight: '100vh' }}>
         <MemoSiderBar />
         <AntdLayout>
-          <MemoHeaderBar colorBgContainer={colorBgContainer} />
+          <MemoHeaderBar />
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '16px 0' }} items={[{ title: '硬件管理系统' }, { title: pathname }]} />
-            <div style={{ overflow: 'auto', padding: 12, minHeight: 360, background: colorBgContainer }}>
+            <div style={{ overflow: 'auto', padding: 12, minHeight: 360, background: '#fff' }}>
               {props.children}
             </div>
           </Content>

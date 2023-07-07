@@ -2,10 +2,10 @@ import { Menu, Layout } from 'antd'
 const { Sider } = Layout
 import router from 'next/router'
 import type { MenuProps } from 'antd'
-import React, { useMemo } from 'react'
-type MenuItem = Required<MenuProps>['items'][number]
+import React from 'react'
 import { PlusCircleOutlined, MessageOutlined, DesktopOutlined, UserOutlined, MenuOutlined } from '@ant-design/icons'
 
+type MenuItem = Required<MenuProps>['items'][number]
 function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[]): MenuItem {
   return {
     key,
@@ -24,7 +24,7 @@ const items: MenuItem[] = [
 
 export function SiderBar() {
   return (
-    <Sider breakpoint="xl">
+    <Sider breakpoint="sm">
       <div className="m-4 p-3 bg-white/10 rounded-xl text-white/80 font-bold text-sm text-center">硬件管理系统</div>
       <Menu
         onClick={({ key }) => router.push(key)}
